@@ -4,6 +4,8 @@ body {
     text-align: center;
     padding: 50px;
     background-color: #f0f0f0;
+    margin: 0;
+    overflow: hidden; /* Impede barras de rolagem */
 }
 
 h1 {
@@ -29,11 +31,13 @@ h1 {
 /* Estilo para o container dos fogos de artifício */
 .fireworks {
     position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: none;
     z-index: 999;
+    pointer-events: none; /* Impede que os fogos interfiram com o clique nos botões */
 }
 
 /* Animação para os fogos de artifício (partículas) */
