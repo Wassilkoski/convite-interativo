@@ -4,7 +4,7 @@ const noButton = document.getElementById('noBtn');
 
 // Função para notificar a escolha via webhook
 function sendNotification(choice) {
-  fetch('https://api.your-notification-service.com/send', { // Troque pelo link do seu webhook
+  fetch('https://hooks.zapier.com/hooks/catch/20922748/2i0lrkp/', { // Troque pelo link do seu webhook
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ message: `A resposta foi: ${choice}` }),
