@@ -35,15 +35,6 @@ yesButton.addEventListener('click', function() {
         generateFireworks();
     }
     alert('Convite aceito! Vamos comer pizza juntos!');
-    
-    // Envia a resposta para o Zapier
-    fetch('https://hooks.zapier.com/hooks/catch/20922748/2i0c42w/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ response: 'Sim' })
-    });
 });
 
 // Ao clicar no botão "Não"
@@ -61,15 +52,6 @@ noButton.addEventListener('click', function() {
         
         if (confirmChoice) {
             alert('Então comunique ao Gustavo que o convite não foi aceito.');
-            
-            // Envia a resposta para o Zapier
-            fetch('https://hooks.zapier.com/hooks/catch/20922748/2i0c42w/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ response: 'Não' })
-            });
         }
 
         // Resetando a contagem e removendo o efeito de tremor
