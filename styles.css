@@ -33,6 +33,7 @@ h1 {
     left: 50%;
     transform: translateX(-50%);
     display: none;
+    z-index: 999;
 }
 
 /* Animação para os fogos de artifício (corações e pizzas) */
