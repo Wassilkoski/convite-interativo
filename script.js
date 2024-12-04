@@ -6,18 +6,17 @@ let noClicked = false; // Variável para controlar os cliques no botão "Não"
 
 // Ao clicar em "Sim"
 yesButton.addEventListener('click', function() {
-    heart.style.display = 'inline'; // Exibe o coração
+    heart.style.display = 'inline'; // Exibe o coração pulsante
     alert('Convite aceito! Vamos comer pizza!');
     
-    // Aqui, você pode adicionar o código para enviar uma notificação via Zapier, se necessário
-    // Por exemplo:
-    // fetch('https://hooks.zapier.com/hooks/catch/20922748/2i0c42w/', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({ response: 'Sim' })
-    // });
+    // Envia a notificação para o Zapier com a resposta "Sim"
+    fetch('https://hooks.zapier.com/hooks/catch/20922748/2i0c42w/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ response: 'Sim' })
+    });
 });
 
 // Ao clicar em "Não"
@@ -29,7 +28,7 @@ noButton.addEventListener('click', function() {
         const confirmChoice = confirm("Você tem certeza que quer escolher essa opção?");
 
         if (confirmChoice) {
-            // Envia a notificação para o Zapier
+            // Envia a notificação para o Zapier com a resposta "Não"
             fetch('https://hooks.zapier.com/hooks/catch/20922748/2i0c42w/', {
                 method: 'POST',
                 headers: {
