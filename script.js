@@ -2,28 +2,30 @@ const yesButton = document.getElementById('yesButton');
 const noButton = document.getElementById('noButton');
 const fireworksContainer = document.getElementById('fireworks');
 
-// Função para gerar fogos de artifício com corações
+// Função para gerar fogos de artifício (partículas)
 function generateFireworks() {
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.innerHTML = '❤️';  // Coração para os fogos de artifício
-    heart.style.left = `${Math.random() * 80}%`;  // Posição aleatória na tela
-    heart.style.animationDelay = `${Math.random() * 1}s`;  // Atraso aleatório para os fogos
-    fireworksContainer.appendChild(heart);
+    // Criar várias partículas para os fogos
+    for (let i = 0; i < 20; i++) {  // Gerar 20 partículas por fogo
+        const firework = document.createElement('div');
+        firework.classList.add('firework');
+        firework.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;  // Cor aleatória para as partículas
+        firework.style.left = `${Math.random() * 80}%`;  // Posição aleatória na tela
+        firework.style.top = `${Math.random() * 50}%`;  // Posição aleatória na tela
+        firework.style.animationDelay = `${Math.random() * 1}s`;  // Atraso aleatório para a animação
+        fireworksContainer.appendChild(firework);
 
-    // Remover os fogos após a animação
-    setTimeout(() => {
-        heart.remove();
-    }, 2000);
+        // Remover as partículas após a animação
+        setTimeout(() => {
+            firework.remove();
+        }, 2000);  // Remover após 2 segundos
+    }
 }
 
 // Ao clicar no botão "Sim"
 yesButton.addEventListener('click', function() {
     // Exibe os fogos de artifício
     fireworksContainer.style.display = 'block';
-    for (let i = 0; i < 10; i++) {  // Gerar múltiplos fogos (10 corações)
-        generateFireworks();
-    }
+    generateFireworks();  // Gerar os fogos de artifício
     alert('Convite aceito! Vamos comer pizza juntos!');
 });
 
