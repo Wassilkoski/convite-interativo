@@ -36,23 +36,25 @@ h1 {
     z-index: 999;
 }
 
-/* Animação para os fogos de artifício em forma de coração */
+/* Animação para os fogos de artifício (partículas) */
 @keyframes fireworks-animation {
     0% {
         transform: scale(0);
         opacity: 1;
     }
     100% {
-        transform: scale(1.5);
+        transform: scale(3);
         opacity: 0;
     }
 }
 
-.fireworks .heart {
+.fireworks .firework {
     position: absolute;
-    font-size: 40px;
-    animation: fireworks-animation 2s ease-out infinite;
-    color: red;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    animation: fireworks-animation 1s ease-out infinite;
 }
 
 /* Animação para o botão "Não" quando clicado */
