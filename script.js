@@ -1,12 +1,39 @@
 const yesButton = document.getElementById('yesButton');
 const noButton = document.getElementById('noButton');
-const heart = document.getElementById('heart');
+const fireworksContainer = document.getElementById('fireworks');
 
-let noClicked = 0; // Variável para controlar os cliques no botão "Não"
+let noClicked = 0; // Contador para cliques no botão "Não"
 
-// Lógica para o botão "Sim"
+// Função para gerar fogos de artifício com corações e pizzas
+function generateFireworks() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerHTML = '❤️';
+    heart.style.left = `${Math.random() * 80}%`;
+    heart.style.animationDelay = `${Math.random() * 1}s`;
+    fireworksContainer.appendChild(heart);
+
+    const pizza = document.createElement('div');
+    pizza.classList.add('pizza');
+    pizza.innerHTML = '🍕';
+    pizza.style.left = `${Math.random() * 80}%`;
+    pizza.style.animationDelay = `${Math.random() * 1}s`;
+    fireworksContainer.appendChild(pizza);
+
+    // Remover os fogos após a animação
+    setTimeout(() => {
+        heart.remove();
+        pizza.remove();
+    }, 2000);
+}
+
+// Ao clicar no botão "Sim"
 yesButton.addEventListener('click', function() {
-    heart.style.display = 'inline'; // Exibe o coração pulsante
+    // Exibe os fogos de artifício
+    fireworksContainer.style.display = 'block';
+    for (let i = 0; i < 5; i++) {  // Gerar múltiplos fogos
+        generateFireworks();
+    }
     alert('Convite aceito! Vamos comer pizza juntos!');
     
     // Envia a resposta para o Zapier
@@ -19,20 +46,22 @@ yesButton.addEventListener('click', function() {
     });
 });
 
-// Lógica para o botão "Não"
+// Ao clicar no botão "Não"
 noButton.addEventListener('click', function() {
-    noClicked++; // Contador de cliques no botão "Não"
-    
-    // Se for o primeiro clique no "Não"
-    if (noClicked === 1) {
-        noButton.classList.add('move'); // Move o botão
-    }
-    
-    // Se for o segundo clique no "Não"
-    if (noClicked === 2) {
-        const confirmChoice = confirm("Você tem certeza que não quer sair comigo?");
+    noClicked++;  // Contador de cliques no "Não"
 
+    // Se for o primeiro clique
+    if (noClicked === 1) {
+        noButton.classList.add('shake'); // Faz o botão "Não" tremer
+    }
+
+    // Se for o segundo clique
+    if (noClicked === 2) {
+        const confirmChoice = confirm("Você tem certeza que quer escolher esta opção?");
+        
         if (confirmChoice) {
+            alert('Então comunique ao Gustavo que o convite não foi aceito.');
+            
             // Envia a resposta para o Zapier
             fetch('https://hooks.zapier.com/hooks/catch/20922748/2i0c42w/', {
                 method: 'POST',
@@ -41,12 +70,10 @@ noButton.addEventListener('click', function() {
                 },
                 body: JSON.stringify({ response: 'Não' })
             });
-
-            alert('Você escolheu "Não". Farei outra tentativa com o Gustavo.');
         }
 
-        // Resetando o estado de clique para "Não" e a animação
+        // Resetando a contagem e removendo o efeito de tremor
         noClicked = 0;
-        noButton.classList.remove('move'); // Reseta a animação do botão "Não"
+        noButton.classList.remove('shake');
     }
 });
