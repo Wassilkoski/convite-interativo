@@ -10,7 +10,14 @@ yesButton.addEventListener('click', function() {
     alert('Convite aceito! Vamos comer pizza!');
     
     // Aqui, você pode adicionar o código para enviar uma notificação via Zapier, se necessário
-    // Exemplo de código para enviar o evento ao Zapier pode ser configurado com o Webhook
+    // Por exemplo:
+    // fetch('https://hooks.zapier.com/hooks/catch/20922748/2i0c42w/', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({ response: 'Sim' })
+    // });
 });
 
 // Ao clicar em "Não"
@@ -22,20 +29,19 @@ noButton.addEventListener('click', function() {
         const confirmChoice = confirm("Você tem certeza que quer escolher essa opção?");
 
         if (confirmChoice) {
-            // Envia a notificação para o Zapier ou para qualquer outro lugar
-            alert('Notificação enviada ao Zapier: "Não" foi escolhido.');
-
-fetch('https://hooks.zapier.com/hooks/catch/20922748/2i0c42w/', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ response: 'Não' })
-});
+            // Envia a notificação para o Zapier
+            fetch('https://hooks.zapier.com/hooks/catch/20922748/2i0c42w/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ response: 'Não' })
+            });
 
             // Resetando o estado de clique para "Não" e a animação
             noClicked = false;
             noButton.classList.remove('move'); // Reseta o movimento do botão
+            alert('Notificação enviada ao Zapier: "Não" foi escolhido.');
         }
     }
 });
