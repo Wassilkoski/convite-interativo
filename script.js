@@ -4,14 +4,22 @@ const fireworksContainer = document.getElementById('fireworks');
 
 // Função para gerar fogos de artifício (partículas)
 function generateFireworks() {
-    // Criar várias partículas para os fogos
-    for (let i = 0; i < 20; i++) {  // Gerar 20 partículas por fogo
+    const numParticles = 100;  // Número de partículas por explosão
+
+    for (let i = 0; i < numParticles; i++) {
         const firework = document.createElement('div');
         firework.classList.add('firework');
-        firework.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;  // Cor aleatória para as partículas
-        firework.style.left = `${Math.random() * 80}%`;  // Posição aleatória na tela
-        firework.style.top = `${Math.random() * 50}%`;  // Posição aleatória na tela
-        firework.style.animationDelay = `${Math.random() * 1}s`;  // Atraso aleatório para a animação
+        
+        // Cor aleatória para cada partícula
+        firework.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        
+        // Posições aleatórias dentro da tela
+        firework.style.left = `${Math.random() * 100}%`;
+        firework.style.top = `${Math.random() * 100}%`;
+        
+        // Atraso aleatório para a animação das partículas
+        firework.style.animationDelay = `${Math.random() * 1}s`;
+        
         fireworksContainer.appendChild(firework);
 
         // Remover as partículas após a animação
@@ -23,7 +31,7 @@ function generateFireworks() {
 
 // Ao clicar no botão "Sim"
 yesButton.addEventListener('click', function() {
-    // Exibe os fogos de artifício
+    // Exibe os fogos de artifício ocupando toda a tela
     fireworksContainer.style.display = 'block';
     generateFireworks();  // Gerar os fogos de artifício
     alert('Convite aceito! Vamos comer pizza juntos!');
