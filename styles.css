@@ -1,8 +1,13 @@
-/* Estilos para o corpo da página */
+/* Estilos gerais da página */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
     padding: 50px;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    color: #333;
 }
 
 /* Estilo básico dos botões */
@@ -21,41 +26,52 @@ body {
     background-color: #f0f0f0;
 }
 
-/* Coração pulsante que aparece quando o "Sim" é clicado */
-.heart {
-    font-size: 60px;
-    color: red;
+/* Estilo para o container dos fogos de artifício */
+.fireworks {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
     display: none;
-    animation: pulse 1s infinite;
 }
 
-/* Animação do coração */
-@keyframes pulse {
+/* Animação para os fogos de artifício (corações e pizzas) */
+@keyframes fireworks-animation {
     0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.2);
+        transform: scale(0);
+        opacity: 1;
     }
     100% {
-        transform: scale(1);
+        transform: scale(1.5);
+        opacity: 0;
     }
 }
 
-/* Animação para o botão "Não" mover-se */
-@keyframes moveButton {
-    0% {
-        transform: translateX(0);
-    }
-    50% {
-        transform: translateX(20px);
-    }
-    100% {
-        transform: translateX(0);
-    }
+.fireworks div {
+    position: absolute;
+    font-size: 40px;
+    animation: fireworks-animation 2s ease-out infinite;
 }
 
-/* Estilo para o botão "Não" quando ele se move */
-.move {
-    animation: moveButton 0.5s ease-in-out;
+/* Cores e tamanhos dos fogos */
+.fireworks .heart {
+    color: red;
+}
+
+.fireworks .pizza {
+    color: orange;
+    font-size: 50px;
+}
+
+/* Animação para o botão "Não" quando clicado */
+@keyframes shakeButton {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-10px); }
+    100% { transform: translateX(0); }
+}
+
+.shake {
+    animation: shakeButton 0.5s ease;
 }
