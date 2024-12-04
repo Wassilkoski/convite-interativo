@@ -36,7 +36,7 @@ h1 {
     z-index: 999;
 }
 
-/* Animação para os fogos de artifício (corações e pizzas) */
+/* Animação para os fogos de artifício em forma de coração */
 @keyframes fireworks-animation {
     0% {
         transform: scale(0);
@@ -48,20 +48,11 @@ h1 {
     }
 }
 
-.fireworks div {
+.fireworks .heart {
     position: absolute;
     font-size: 40px;
     animation: fireworks-animation 2s ease-out infinite;
-}
-
-/* Cores e tamanhos dos fogos */
-.fireworks .heart {
     color: red;
-}
-
-.fireworks .pizza {
-    color: orange;
-    font-size: 50px;
 }
 
 /* Animação para o botão "Não" quando clicado */
